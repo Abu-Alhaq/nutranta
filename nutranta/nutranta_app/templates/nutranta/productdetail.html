@@ -1,0 +1,56 @@
+{% extends 'nutranta/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-6 text-center align-self-center">
+   <img src="{{product.product_image.url}}" alt="" class="img-fluid img-thumbnail">
+  </div>
+  <div class="col-sm-5 offset-sm-1">
+   <h2>{{product.title}}</h2>
+   <hr>
+   <p>{{product.description}}</p> <br>
+   <h4>Rs.{{product.selling_price}}<small class="fw-light text-decoration-line-through"></small></h4> <br>
+   <a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
+   <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+   <h5 class="mt-5"> Nutrition Facts</h5>
+    <hr>
+    <table class='table border'>
+        <tr>
+        <td>Total Calories</td>
+        <td>{{product.total_calroes}}</td>
+        </tr>
+        <tr>
+        <td>Protein</td>
+        <td>{{product.total_protein}}</td>
+        </tr>
+        <tr>
+        <td>Fat</td>
+        <td>{{product.total_fat}}</td>
+        </tr>
+        <tr>
+        <td>Carbohydrates</td>
+        <td>{{product.total_carbohydrates}}</td>
+        </tr>
+        <tr>
+        <td>Sugar</td>
+        <td>{{product.total_sugar}}</td>
+        </tr>
+        <tr>
+        <td>Sodium</td>
+        <td>{{product.total_sodium}}</td>
+        </tr>
+        <tr>
+        <td>Calcium</td>
+        <td>{{product.total_calcium}}</td>
+        </tr>
+        <tr>
+        <td>Potassium</td>
+        <td>{{product.total_potassium}}</td>
+        </tr>
+    </table>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

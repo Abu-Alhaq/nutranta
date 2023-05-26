@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --orange:#ff7800;
+    --black:#130f40;
+    --light-color:#666;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:.1rem solid rgba(0,0,0,.1);
+    --outline-hover:.2rem solid var(--black);
+}
+
+.fa-shopping-cart{
+    color:var(--orange);
+}
+.fa-shopping-basket{
+    color:var(--orange);
+    font-size: 2rem;
+    margin-right: 5px;
+}
+.navbar-brand{
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+}
+.nav-item a{
+    font-size: 18px;
+}
+.hero-section {
+    background-image: url('../images/banner/banner-bg.webp');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-section .jumbotron {
+    background-color: transparent;
+  }
+
+
+  .heading{
+    padding:2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color:var(--black);
+}
+
+.heading span{
+    background: var(--orange);
+    color:#fff;
+    display: inline-block;
+    padding:.5rem 3rem;
+    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+}
+
+
+.owl-carousel .item{
+ /* border: 1px solid black; */
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;
+ box-sizing: border-box;
+ border: 2px solid #ccc;
+ border-radius: 10px;
+ box-shadow: 0 0 20px rgba(0,0,0,0.3);
+ padding: 10px;
+}
+
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+}
+
+td{
+    font-size: 18px;
+    
+}
