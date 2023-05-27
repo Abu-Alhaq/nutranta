@@ -53,11 +53,11 @@
                         {% csrf_token %}
                             <label for="exampleselect" class="form-label">Activity</label>
                             <select name='activity' class="form-select" id="exampleselect" name="dropdown">
-                            <option value="sedentary">Sedentary</option>
-                            <option value="lightly_active">Lightly active</option>
-                            <option value="moderately_active">Moderately active</option>
-                            <option value="very_active">Very active</option>
-                            <option value="extra_active">Extra active</option>
+                            <option value="level_1">Sedentary</option>
+                            <option value="level_2">Lightly active</option>
+                            <option value="level_3">Moderately active</option>
+                            <option value="level_4">Very active</option>
+                            <option value="level_5">Extra active</option>
                             </select>
                         </div>
                         
@@ -70,6 +70,7 @@
         </div>
       </div>
     </div>
+    {% if result %}
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -78,25 +79,96 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
+              <h2 class='text_bmi'>BMI CALCULATOR</h2> 
+              <p>Body Mass Index (BMI)</p>
+              <h4 id="bmi">{{ result.bmi }} kg/m²</h4>
+              <p class='text-success'>{{ result.interpretation }}</p>
+              <p>Healthy BMI range: 18.5 kg/m² - 25 kg/m².</p>
+            </div>
+            
+            <div class="col-md-12">
+              <h2 class='text_bmi'>CALORIES CALCULATOR</h2> 
+              <p>The results show a number of daily calorie estimates that can be used as a guideline for how many calories to consume each day to maintain, lose, or gain weight at a chosen rate.</p>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>Total Calories</th>
-                      <th>Breakfast</th>
-                      <th>Lunch</th>
-                      <th>Dinner</th>
+                      <th>Maintain weight</th>
+                      <th>Mild weight loss</th>
+                      <th>Weight loss</th>
+                      <th>Extreme weight loss</th>
                     </tr>
+                    <tr>
+                      <td> {{ main_tain }}  Calories/day</td>
+                      <td> {{ mild_weight_loss_cal }} Calories/day</td>
+                      <td>  {{ weight_loss_cal }} Calories/day</td>
+                      <td> {{ extream_calory }} Calories/day</td>
+                    </tr>
+                    <tr>
+                      <td class="text-success"> <i class="fa fa-arrow-circle-down"></i> -0 kg/week</td>
+                      <td class="text-success"> <i class="fa fa-arrow-circle-down"></i> -{{ mild_weight_loss_week }}/week</td>
+                      <td class="text-success">  <i class="fa fa-arrow-circle-down"></i> -{{ weight_loss_week }}/week</td>
+                      <td class="text-success"> <i class="fa fa-arrow-circle-down"></i> -{{ extream_loss_weight }}/week</td>
+                    </tr>
+
                   </thead>
                   <tbody></tbody>
                 </table>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <h2 class='text_bmi'>Recommanded Diet</h2>
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Breakfast {{ breakfast_title }}
+                      </button>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      {{ brakfast_title_summary }}
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Lunch   {{ lunch_title }}
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      {{ lunch_title_summary }}
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed text-decoration-none" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Dinner {{ dinner_title }}
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      {{ dinner_title_summary }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-   
+    {% endif %}   
   </div>
 </div>
  {% endblock main-content %}

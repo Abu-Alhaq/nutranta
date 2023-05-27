@@ -87,3 +87,26 @@ td{
     font-size: 18px;
     
 }
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+}
+.text_bmi{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+}
+.underweight{
+    color: #ff7800;
+}
+.normal{
+    color: #00ff00;
+}
+.overweight{
+    color: #ff0000;
+}
+.obese{
+    color: #ff0000;
+}
