@@ -26,9 +26,12 @@
     {% for product in all_Products %}
     <div class="item">
     <img src="{{product.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{product.title}}</span><br><span class="fs-5">RS.{{product.selling_price}}</span><br><span class="fs-5">Total Callories {{product.total_calroes}}</span> <br>
-    <a href="{% url 'product-detail' product.id %}" class="btn btn-primary">View Details</a>
-      <a href="{% url 'add-to-cart' %}" class="btn btn-primary">Add to Cart</a>
-
+    <a href="{% url 'product-detail' product.id %}" class="btn btn btn-info shadow px-2 py-2">View Details</a>
+    <form action="/add-to-cart" class='d-inline'>
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}} id='product_id'">
+            <button type="submit" class="btn btn-primary shadow px-2 py-2">Add to Cart</button>
+        </form>
     </div>
     {% endfor %}
  </div>
@@ -42,28 +45,28 @@
   <div class="col-sm-3">
    <div class="card mb-3">
      <div class="card-body">
-     <img src="{% static 'images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
+     <img src="{% static 'images/—Pngtree—sign sale with text bisa_6212794.png' %}" alt="" srcset="" style='height:100px; width:200px ' class="img-fluid">
      </div>
    </div>
   </div>
   <div class="col-sm-3">
    <div class="card mb-3">
      <div class="card-body">
-      <img src="{% static 'images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
+      <img src="{% static 'images/pngwing.com.png' %}" alt="" srcset=""style='height:100px' class="img-fluid">
      </div>
    </div>
   </div>
   <div class="col-sm-3">
    <div class="card mb-3">
      <div class="card-body">
-      <img src="{% static 'images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
+      <img src="{% static 'images/—Pngtree—sign sale with text bisa_6212794.png' %}" alt="" style='height:100px;width:200px ' srcset="" class="img-fluid">
      </div>
    </div>
   </div>
   <div class="col-sm-3">
    <div class="card mb-3">
      <div class="card-body">
-      <img src="{% static 'images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
+      <img src="{% static 'images/pngwing.com.png' %}" alt="" srcset="" style='height:100px' class="img-fluid">
      </div>
    </div>
   </div>
@@ -73,23 +76,21 @@
 
 <!-- 2nd Product Slider -->
 <div class="mx-3">
- <h2>Trending Deals</h2>
- <!-- Slider 2 -->
- <div class="owl-carousel" id="slider2">
-  <div class="item"><img src="{% static 'images/product/12.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 1</span><br><span class="fs-5">Rs. 500</span></div>
-  <div class="item"><img src="{% static 'images/product/11.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 2</span><br><span class="fs-5">Rs. 300</span></div>
-  <div class="item"><img src="{% static 'images/product/10.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 3</span><br><span class="fs-5">Rs. 100</span></div>
-  <div class="item"><img src="{% static 'images/product/9.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 4</span><br><span class="fs-5">Rs. 700</span></div>
-  <div class="item"><img src="{% static 'images/product/8.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 5</span><br><span class="fs-5">Rs. 500</span></div>
-  <div class="item"><img src="{% static 'images/product/11.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 6</span><br><span class="fs-5">Rs. 400</span></div>
-  <div class="item"><img src="{% static 'images/product/5.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 7</span><br><span class="fs-5">Rs. 500</span></div>
-  <div class="item"><img src="{% static 'images/product/11.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 8</span><br><span class="fs-5">Rs. 300</span></div>
-  <div class="item"><img src="{% static 'images/product/12.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 9</span><br><span class="fs-5">Rs. 600</span></div>
-  <div class="item"><img src="{% static 'images/product/7.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 10</span><br><span class="fs-5">Rs. 900</span></div>
-  <div class="item"><img src="{% static 'images/product/6.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 11</span><br><span class="fs-5">Rs. 100</span></div>
-  <div class="item"><img src="{% static 'images/product/10.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 12</span><br><span class="fs-5">Rs. 200</span></div>
+  <h1 class="heading text-center"> Our <span>Product</span> </h1>
+  <!-- Slider 2 -->
+    <div class="owl-carousel" id="slider2">
+    {% for product in all_Products %}
+    <div class="item">
+    <img src="{{product.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{product.title}}</span><br><span class="fs-5">RS.{{product.selling_price}}</span><br><span class="fs-5">Total Callories {{product.total_calroes}}</span> <br>
+    <a href="{% url 'product-detail' product.id %}" class="btn btn btn-info shadow px-2 py-2">View Details</a>
+    <form action="/add-to-cart" class='d-inline'>
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}} id='product_id'">
+            <button type="submit" class="btn btn-primary shadow px-2 py-2">Add to Cart</button>
+        </form>
+    </div>
+    {% endfor %}
  </div>
 </div>
-<!-- End 2nd Product Slider -->
 {% endblock main-content %}
 

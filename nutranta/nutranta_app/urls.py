@@ -30,14 +30,18 @@ urlpatterns = [
     ############################# Contact Us ########################################
     path('contactus/', views.ContactUS.as_view(), name='contactus'),
     ############################# End Contact Us ####################################
-    path('cart/', views.add_to_cart, name='add-to-cart'),
+    path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
+    path('show-cart/', views.show_cart, name='showcart'),
+    path('pluscart/', views.plus_cart, name='pluscart'),
+    path('minuscart/', views.minus_cart, name='minuscart'),
+    path('removecart/', views.remove_cart, name='removecart'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('paymentdone/', views.payment_done, name='paymentdone'),
+
+
     path('buy/', views.buy_now, name='buy-now'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('address/', views.address, name='address'),
     path('orders/', views.orders, name='orders'),
-    # path('changepassword/', views.change_password, name='changepassword'),
-    path('mobile/', views.mobile, name='mobile'),
-    # path('login/', views.login, name='login'),
-    # path('registration/', views.customerregistration, name='customerregistration'),
-    path('checkout/', views.checkout, name='checkout'),
+   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
