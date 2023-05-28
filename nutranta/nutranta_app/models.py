@@ -36,6 +36,8 @@ class Customer(models.Model):
     city = models.CharField(max_length=200)
     zipcode = models.IntegerField()
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
+    mobile = models.IntegerField()
+    email = models.EmailField()
 
     def __str__(self):
         return str(self.id)
@@ -109,6 +111,16 @@ class Address(models.Model):
 
     def __str__(self):
         return str(self.id + " " + self.address + " " + self.locality + " " + self.city + " " + self.state + " " + str(self.zipcode))
+    
+# contact us model
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=15)
+    message = models.CharField(max_length=500)
+
+    def __str__(self):
+        return str(self.id)
     
 
 

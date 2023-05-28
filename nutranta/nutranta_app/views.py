@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
-from .models import Product , Cart , OrderPlaced , Address , Customer
+from .models import Product , Cart , OrderPlaced , Address , Customer , Contact
 from .api_call import dailycalorie, get_diet_plan
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import UserRegisterForm,Contact_Us,ProfileForm
 
 # Create your views here.
 class ProductView(View):
@@ -81,6 +85,75 @@ def diet_recommandation(request):
  return render(request, 'nutranta/dietrecommandation.html')
 
 
+class User_Registration_view(View):
+    def get(self, request):
+        form = UserRegisterForm()
+        return render(request, 'nutranta/register.html', {'form': form})
+
+    def post(self, request):
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created succassfuly {username}!')
+            return redirect('login')
+        else:
+            return render(request, 'nutranta/register.html', {'form': form})
+
+# @login_required
+# def Profile(request):
+#     return render(request, 'nutranta/profile.html')
+
+
+def AboutUS(request):
+    return render(request, 'nutranta/about.html')
+
+class ContactUS(View):
+    def get(self, request):
+        form = Contact_Us()
+        return render(request, 'nutranta/contact.html', {'form': form})
+
+    def post(self, request):
+        form = Contact_Us(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
+            customer = Contact(name=name, email=email, phone=phone, message=message)
+            customer.save()
+            sender_email = 'musadiqzahid815@gmail.com'
+            recipient_email = email
+            message = 'Thank you for contacting us. We will get back to you soon. Nutranta Team'
+
+            send_mail('Subject', message, sender_email, [recipient_email])
+            return render(request, 'nutranta/success.html')
+        else:
+            return render(request, 'nutranta/contact.html', {'form': form})
+        
+
+class ProfileView(View):
+    def get(self, request):
+        form = ProfileForm()
+
+        return render(request, 'nutranta/profile.html', {'form': form, 'active': 'btn-primary'})
+    def post(self, request):
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            mobile = form.cleaned_data['mobile']
+            locality = form.cleaned_data['locality']
+            city = form.cleaned_data['city']
+            state = form.cleaned_data['state']
+            zipcode = form.cleaned_data['zipcode']
+            reg = Customer(user=user, name=name, email=email, mobile=mobile, locality=locality, city=city, state=state, zipcode=zipcode)
+            reg.save()
+            messages.success(request, f'Profile Updated Succassfuly!')
+        return render(request, 'nutranta/profile.html', {'form': form, 'active': 'btn-primary'}) 
+    
+
 def add_to_cart(request):
  return render(request, 'nutranta//addtocart.html')
 
@@ -96,17 +169,17 @@ def address(request):
 def orders(request):
  return render(request, 'nutranta/orders.html')
 
-def change_password(request):
- return render(request, 'nutranta/changepassword.html')
+# def change_password(request):
+#  return render(request, 'nutranta/changepassword.html')
 
 def mobile(request):
  return render(request, 'nutranta/mobile.html')
 
-def login(request):
- return render(request, 'nutranta/login.html')
+# def login(request):
+#  return render(request, 'nutranta/login.html')
 
-def customerregistration(request):
- return render(request, 'nutranta/customerregistration.html')
+# def customerregistration(request):
+#  return render(request, 'nutranta/customerregistration.html')
 
 def checkout(request):
  return render(request, 'nutranta/checkout.html')
